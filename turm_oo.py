@@ -1,10 +1,20 @@
 #!/usr/bin/python3
 # coding=utf-8
+"""
+Script for displaying a numeric tower.
+"""
 
 import sys
 
+__author__ = "Michael Krisper"
+
 
 class Tower():
+    """
+    A class representing a numeric tower.
+    @param number: the number to start with
+    """
+
     def __init__(self, number):
         self.number = number
         self.__items = None
@@ -29,6 +39,10 @@ class Tower():
 
     @property
     def max_nr(self):
+        """
+        Returns the biggest number which will be present in the tower.
+        @return: the biggest number
+        """
         return self.number * 362880
 
     def __str__(self):
@@ -40,6 +54,11 @@ class Tower():
         return "Tower({})".format(self.number)
 
 
-number = int(sys.argv[1])
-t = Tower(number)
-print(t)
+def main():
+    number = int(sys.argv[1])
+    t = Tower(number)
+    print(t)
+
+
+if __name__ == "__main__":
+    main()
