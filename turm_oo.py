@@ -14,10 +14,9 @@ class Tower():
     A class representing a numeric tower.
     @param number: the number to start with
     """
-
     def __init__(self, number):
-        self.number = number
-        self.__items = None
+        self._number = number
+        self._items = None
 
     def __iter__(self):
         def it(nr):
@@ -30,28 +29,20 @@ class Tower():
                 nr //= fac
             yield (nr, "", "")
 
-        return it(self.number)
+        return it(self._number)
 
     def __getitem__(self, item):
-        if not self.__items:
-            self.__items = list(iter(self))
-        return self.__items[item]
-
-    @property
-    def max_nr(self):
-        """
-        Returns the biggest number which will be present in the tower.
-        @return: the biggest number
-        """
-        return self.number * 362880
+        if not self._items:
+            self._items = list(iter(self))
+        return self._items[item]
 
     def __str__(self):
-        pad = len(str(self.max_nr)) + 1
+        pad = len(str(self._number * 362880)) + 1
         return "\n".join(
             "{number:{pad}}{op}{fac}".format(pad=pad, op=op, number=nr, fac=fac) for nr, op, fac in iter(self))
 
     def __repr__(self):
-        return "Tower({})".format(self.number)
+        return "Tower({})".format(self._number)
 
 
 def main():
